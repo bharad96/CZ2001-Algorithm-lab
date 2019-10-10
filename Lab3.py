@@ -87,7 +87,7 @@ def swap(index1, index2, arr):
 def insertionSort(arr, first, last):
     num_of_comparisons = 0
     for i in range(first + 1, last + 1):
-        for j in range(i, 0, -1):
+        for j in range(i, first - 1, -1):
             # print(i, j)
             num_of_comparisons += 1
             if arr[j] < arr[j - 1]:
@@ -112,7 +112,7 @@ def insertionSort(arr, first, last):
 def merge_insertion_sort(arr, first, last, switch_sort_num):
 
     if last - first > switch_sort_num:
-        mid = first + last // 2
+        mid = (first + last) // 2
         merge_insertion_sort(arr, first, mid, switch_sort_num)
         merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
         merge(arr, first, mid, last)
@@ -123,12 +123,13 @@ def merge_insertion_sort(arr, first, last, switch_sort_num):
 
 start = process_time()
 
-arr_length = 20
-arr = [i for i in range(arr_length)]
+arr_length = 8
+# arr = [i for i in range(arr_length)]
+arr = [6, 2, 5, 1, 7, 4, 3, 0]
 print(arr)
 random.shuffle(arr)
 print(arr)
-merge_insertion_sort(arr, 0, arr_length - 1, 10)
+merge_insertion_sort(arr, 0, arr_length - 1, 2)
 print(arr)
 
 
