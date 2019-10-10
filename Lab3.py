@@ -87,7 +87,7 @@ def swap(index1, index2, arr):
 def insertionSort(arr, first, last):
     num_of_comparisons = 0
     for i in range(first + 1, last + 1):
-        for j in range(i, first - 1, -1):
+        for j in range(i, first, -1):
             # print(i, j)
             num_of_comparisons += 1
             if arr[j] < arr[j - 1]:
@@ -121,19 +121,25 @@ def merge_insertion_sort(arr, first, last, switch_sort_num):
         insertionSort(arr, first, last)
 
 
-start = process_time()
+def get_merge_insertion_sort_time(arr, switch_sort_num):
+    arr_length = len(arr)
+    start = process_time()
+    merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
+    # print(arr)
+    stop = process_time()
+    time_taken = stop - start
+    print("Switch sort num :", + switch_sort_num)
+    print("Elapsed time during the whole program in seconds:", time_taken)
 
-arr_length = 8
-# arr = [i for i in range(arr_length)]
-arr = [6, 2, 5, 1, 7, 4, 3, 0]
-print(arr)
-random.shuffle(arr)
-print(arr)
-merge_insertion_sort(arr, 0, arr_length - 1, 2)
-print(arr)
+    return time_taken
 
+def compare_diff_switch_sort_num():
+    arr_length = 10000
+    arr = [i for i in range(arr_length)]
+    # print(arr)
+    random.shuffle(arr)
 
-stop = process_time()
-print("Elapsed time:", stop, start)
+    for i in range(11):
+        get_merge_insertion_sort_time(arr, i)
 
-print("Elapsed time during the whole program in seconds:", stop - start)
+compare_diff_switch_sort_num()
