@@ -11,6 +11,7 @@ def merge(arr, n, m):
     while left_half_index <= mid and right_half_index <= m:
         if arr[left_half_index] < arr[right_half_index]:
             left_half_index += 1
+
         elif arr[right_half_index] < arr[left_half_index]:
             temp = arr[right_half_index]
             for i in range(mid, left_half_index - 1, -1):
@@ -19,11 +20,13 @@ def merge(arr, n, m):
             left_half_index += 1
             right_half_index += 1
             mid += 1
+
         else:
             # if last elements then break
             if left_half_index == mid and right_half_index == m:
                 break;
 
+            #
             left_half_index += 1
 
             temp = arr[right_half_index]
