@@ -1,7 +1,6 @@
 import random
 from time import process_time
 
-
 def merge(arr, n, mid, m):
     if m - n <= 0:
         return
@@ -61,20 +60,31 @@ def swap(index1, index2, arr):
     arr[index1] = arr[index2]
     arr[index2] = temp
 
-# def basic_insertionSort(arr):
-#     num_of_comparisons = 0
-#     for i in range(1, len(arr)):
-#         for j in range(i, 0, -1):
-#             # print(i, j)
-#             num_of_comparisons += 1
-#             if arr[j] < arr[j - 1]:
-#                 # print(arr, num_of_comparisons)
-#                 swap(j, j - 1, arr)
-#                 # print(arr)
-#             else:
-#                 break
-#
-#     return num_of_comparisons
+def basic_insertionSort(arr):
+    num_of_comparisons = 0
+    for i in range(1, len(arr)):
+        for j in range(i, 0, -1):
+            # print(i, j)
+            num_of_comparisons += 1
+            if arr[j] < arr[j - 1]:
+                # print(arr, num_of_comparisons)
+                swap(j, j - 1, arr)
+                # print(arr)
+            else:
+                break
+
+    return num_of_comparisons
+
+def get_insertion_sort_time(arr):
+    arr_length = len(arr)
+    start = process_time()
+    num_comparisons = basic_insertionSort(arr)
+    # print(arr)
+    stop = process_time()
+    time_taken = stop - start
+    print("Elapsed time for insertion sort in seconds:", time_taken)
+    return num_comparisons
+
 #
 # # Simple test to check if insertion sort is working
 # arr = [i for i in range(20)]
@@ -139,7 +149,15 @@ def compare_diff_switch_sort_num():
     # print(arr)
     random.shuffle(arr)
 
-    for i in range(11):
-        get_merge_insertion_sort_time(arr, i)
+    for i in range(21):
+        temp_arr = arr.copy()
+        # print("Before : ", temp_arr)
+        get_merge_insertion_sort_time(temp_arr, i)
+        # print("After : ", temp_arr)
+
 
 compare_diff_switch_sort_num()
+
+# arr = [i for i in range(1000, 1000001)]
+# # print(arr)
+# random.shuffle(arr)
