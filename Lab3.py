@@ -1,4 +1,5 @@
 import random
+import time
 from time import process_time
 
 def merge(arr, n, mid, m):
@@ -7,8 +8,10 @@ def merge(arr, n, mid, m):
 
     right_half_index = mid + 1
     left_half_index = n
+    num_of_comparisons = 0
 
     while left_half_index <= mid and right_half_index <= m:
+        num_of_comparisons += 1
         if arr[left_half_index] < arr[right_half_index]:
             left_half_index += 1
 
@@ -36,15 +39,18 @@ def merge(arr, n, mid, m):
             left_half_index += 1
             right_half_index += 1
             mid += 1
+    return num_of_comparisons
 
 def mergeSort(arr, n, m):
     mid = (n + m) // 2
     if(m - n <= 0):
-        return
+        return 0
     else:
-        mergeSort(arr, n, mid)
-        mergeSort(arr, mid + 1, m)
-    merge(arr, n, mid, m)
+        num = mergeSort(arr, n, mid)
+        num += mergeSort(arr, mid + 1, m)
+    num +=  merge(arr, n, mid, m)
+    return num
+
 
 # # Simple test to check if merge sort is working
 # arr = [i for i in range(20)]
@@ -53,6 +59,14 @@ def mergeSort(arr, n, m):
 # print(arr)
 # mergeSort(arr, 0, len(arr) - 1)
 # print(arr)
+
+def get_merge_sort_time(arr):
+    arr_length = len(arr)
+    start = time.clock()
+    num_of_comparisons = mergeSort(arr, 0, arr_length - 1)
+    time_taken = time.clock() - start
+    print("Number of Comparisons: " , num_of_comparisons)
+    print("Elapsed time during the whole program in miliseconds:", time_taken*1000)
 
 
 def swap(index1, index2, arr):
@@ -118,43 +132,49 @@ def insertionSort(arr, first, last):
 # print(arr, num_comparisons)
 #
 
-
 def merge_insertion_sort(arr, first, last, switch_sort_num):
 
     if last - first > switch_sort_num:
         mid = (first + last) // 2
-        merge_insertion_sort(arr, first, mid, switch_sort_num)
-        merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
-        merge(arr, first, mid, last)
+        num = merge_insertion_sort(arr, first, mid, switch_sort_num)
+        num += merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
+        return num + merge(arr, first, mid, last)
 
     else:
-        insertionSort(arr, first, last)
-
+        return insertionSort(arr, first, last)
 
 def get_merge_insertion_sort_time(arr, switch_sort_num):
     arr_length = len(arr)
-    start = process_time()
-    merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
+    start = time.clock()
+    #start = process_time()
+    num_of_comparisons = merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
     # print(arr)
-    stop = process_time()
-    time_taken = stop - start
+    #stop = process_time()
+    time_taken = time.clock() - start
+    #time_taken = stop - start
     print("Switch sort num :", + switch_sort_num)
-    print("Elapsed time during the whole program in seconds:", time_taken)
+    print("Number of Comparisons: ", num_of_comparisons)
+    print("Elapsed time during the whole program in miliseconds:", time_taken*1000)
 
     return time_taken
 
 def compare_diff_switch_sort_num():
     arr_length = 10000
+    print("Array Size :", arr_length)
     arr = [i for i in range(arr_length)]
-    # print(arr)
     random.shuffle(arr)
 
+    #Mergesort Algorithm
+    temp_arr = arr.copy();
+    get_merge_sort_time(temp_arr);
+    print("+-----------------------------------------------------------+")
+
+    #MergeInsertionSort Algorithm
     for i in range(21):
         temp_arr = arr.copy()
         # print("Before : ", temp_arr)
         get_merge_insertion_sort_time(temp_arr, i)
         # print("After : ", temp_arr)
-
 
 compare_diff_switch_sort_num()
 
