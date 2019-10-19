@@ -2,6 +2,9 @@ import random
 from time import process_time
 from time import perf_counter
 import timeit
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def merge(arr, n, mid, m):
     if m - n <= 0:
@@ -142,17 +145,20 @@ def get_merge_insertion_sort_time(arr, switch_sort_num):
     # arr2 = arr.copy()
     # print(arr)
     #
-    # start = process_time()
+
+    # start = perf_counter()
     # merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
-    # stop = process_time()
-    #
+    # stop = perf_counter()
+    # #
     # time_taken = stop - start
     # print(arr)
 
-    time_taken = timeit.timeit(lambda: merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num), number=10)
+    time_taken = min(timeit.repeat(lambda: merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num), repeat=5, number=5)) / 5
+
+    # print(arr)
 
     print("Switch sort num :", + switch_sort_num)
-    print("Elapsed time during the whole program in seconds:", time_taken)
+    print("Elapsed time during the whole program in milli seconds:", time_taken * 1000)
 
     return time_taken
 
@@ -169,4 +175,18 @@ def compare_diff_switch_sort_num(starting_num, ending_num):
         # print("After : ", temp_arr)
 
 
-compare_diff_switch_sort_num(1000, 10000)
+compare_diff_switch_sort_num(1, 2000)
+
+
+
+#
+# ax = plt.subplot(111)
+# t1 = np.arange(0.0, 1.0, 0.01)
+# for n in [1, 2, 3, 4]:
+#     plt.plot(t1, t1**n, label="n=%d" % n)
+#
+# leg = plt.legend(loc='best', ncol=2, mode="expand", shadow=True, fancybox=True)
+# leg.get_frame().set_alpha(0.5)
+#
+#
+# plt.show()
