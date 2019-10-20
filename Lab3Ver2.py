@@ -7,6 +7,8 @@ import numpy as np
 
 
 def merge(arr, n, mid, m):
+    overall_num_comparisons = 0
+
     if m - n <= 0:
         return
 
@@ -14,6 +16,7 @@ def merge(arr, n, mid, m):
     left_half_index = n
 
     while left_half_index <= mid and right_half_index <= m:
+        overall_num_comparisons += 1
         if arr[left_half_index] < arr[right_half_index]:
             left_half_index += 1
 
@@ -41,6 +44,7 @@ def merge(arr, n, mid, m):
             left_half_index += 1
             right_half_index += 1
             mid += 1
+    return overall_num_comparisons
 
 
 def mergeSort(arr, n, m):
@@ -126,18 +130,32 @@ def insertionSort(arr, first, last):
 # num_comparisons = insertionSort(arr, 10, len(arr) - 1)
 # print(arr, num_comparisons)
 
-
-
 def merge_insertion_sort(arr, first, last, switch_sort_num):
-
+    num_comparison = 0
+    # + 1 in both if and else because there is one comparison here in the if statement below
     if last - first > switch_sort_num:
         mid = (first + last) // 2
-        merge_insertion_sort(arr, first, mid, switch_sort_num)
-        merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
-        merge(arr, first, mid, last)
+        num_comparison += merge_insertion_sort(arr, first, mid, switch_sort_num)
+        num_comparison += merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
+        num_comparison += merge(arr, first, mid, last)
+        return num_comparison
 
     else:
-        insertionSort(arr, first, last)
+        num_comparison += insertionSort(arr, first, last)
+        return num_comparison
+
+
+# def merge_insertion_sort(arr, first, last, switch_sort_num):
+#
+#     # + 1 in both if and else because there is one comparison here in the if statement below
+#     if last - first > switch_sort_num:
+#         mid = (first + last) // 2
+#         num_comparison = merge_insertion_sort(arr, first, mid, switch_sort_num)
+#         num_comparison += merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
+#         return num_comparison + merge(arr, first, mid, last) + 1
+#
+#     else:
+#         return 1 + insertionSort(arr, first, last)
 
 
 def get_merge_insertion_sort_time(arr, switch_sort_num):
@@ -152,14 +170,14 @@ def get_merge_insertion_sort_time(arr, switch_sort_num):
     # #
     # time_taken = stop - start
     # print(arr)
-
+    num_comparisons = merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num)
     time_taken = min(timeit.repeat(lambda: merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num), repeat=5, number=5)) / 5
 
     # print(arr)
 
     print("Switch sort num :", + switch_sort_num)
     print("Elapsed time during the whole program in milli seconds:", time_taken * 1000)
-
+    print("Num of Comparisons :", num_comparisons)
     return time_taken
 
 
@@ -168,14 +186,14 @@ def compare_diff_switch_sort_num(starting_num, ending_num):
     # print(arr)
     random.shuffle(arr)
 
-    for S in [0, 2, 4, 6, 8, 10, 15, 20, 50, 100, 1000, 2000]:
+    for S in [0, 2, 4, 6, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30, 35, 40, 45, 50, 100, 500, 1000]:
         temp_arr = arr.copy()
         # print("Before : ", temp_arr)
         get_merge_insertion_sort_time(temp_arr, S)
         # print("After : ", temp_arr)
 
 
-compare_diff_switch_sort_num(1, 2000)
+compare_diff_switch_sort_num(1, 1000)
 
 
 
@@ -190,3 +208,10 @@ compare_diff_switch_sort_num(1, 2000)
 #
 #
 # plt.show()
+
+# arr = [x for x in range(1, 1001)]
+# random.shuffle(arr)
+# print(arr)
+# num_comparisons = merge_insertion_sort(arr, 0, 1000 - 1, 0)
+# print(arr)
+# print(num_comparisons)
