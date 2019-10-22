@@ -2,12 +2,11 @@ import random
 from time import process_time
 from time import perf_counter
 import timeit
-import matplotlib.pyplot as plt
-import numpy as np
 from openpyxl import load_workbook
 
 wb=load_workbook("PythonOutput.xlsx")
 sheet = wb.active
+
 
 def merge(arr, n, mid, m):
     overall_num_comparisons = 0
@@ -184,33 +183,10 @@ def get_merge_insertion_sort_time(arr, switch_sort_num):
     return time_taken, num_comparisons
 
 
-def compare_diff_switch_sort_num(starting_num, ending_num):
-    arr = [i for i in range(starting_num, ending_num + 1)]
-    # print(arr)
-    random.shuffle(arr)
-
-    for S in S_values:
-        temp_arr = arr.copy()
-        # print("Before : ", temp_arr)
-        time_taken, num_comparisons = get_merge_insertion_sort_time(temp_arr, S)
-        time_arr.append(time_taken)
-        comparison_arr.append(num_comparisons)
-        # print("After : ", temp_arr)
-
-S_values = [0, 2, 4, 6, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30, 35, 40, 45, 50, 100, 500, 1000]
-comparison_arr = []
-time_arr = []
-compare_diff_switch_sort_num(1, 1000)
-
-print(comparison_arr)
-print(time_arr)
-
-def write_to_excel():
-    row = 1
-    col = 1
+def write_to_excel(row, col, data_size, S_values, comparison_arr, time_arr):
 
     sheet.cell(row=row, column=col).value = "DataSize"
-    sheet.cell(row=row, column=col + 1).value = 1000
+    sheet.cell(row=row, column=col + 1).value = data_size
 
     sheet.cell(row=row + 1, column=col).value = "S"
     for s_index in range(len(S_values)):
@@ -224,20 +200,40 @@ def write_to_excel():
     for s_index in range(len(S_values)):
         sheet.cell(row=row + 3, column=col + s_index + 1).value = time_arr[s_index]
 
-write_to_excel()
+
+def compare_diff_switch_sort_num(starting_num, ending_num, row, col):
+    arr = [i for i in range(starting_num, ending_num + 1)]
+    comparison_arr = []
+    time_arr = []
+    s_values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
+                28, 29, 30, 35, 40, 45, 50, 100]
+    # print(arr)
+    random.shuffle(arr)
+
+    for S in s_values:
+        temp_arr = arr.copy()
+        # print("Before : ", temp_arr)
+        time_taken, num_comparisons = get_merge_insertion_sort_time(temp_arr, S)
+        time_arr.append(time_taken)
+        comparison_arr.append(num_comparisons)
+        # print("After : ", temp_arr)
+
+    write_to_excel(row, col, ending_num - starting_num + 1, s_values, comparison_arr, time_arr)
+
+
+# Compares S values and writes to excel for different data set size and S values
+def main():
+    row = 1
+    col = 1
+    data_size_arr = [100, 1000, 5000]
+    for data_size in data_size_arr:
+        compare_diff_switch_sort_num(1, data_size, row, col)
+        row += 10
+
+main()
 
 wb.save("PythonOutput.xlsx")
-#
-# ax = plt.subplot(111)
-# t1 = np.arange(0.0, 1.0, 0.01)
-# for n in [1, 2, 3, 4]:
-#     plt.plot(t1, t1**n, label="n=%d" % n)
-#
-# leg = plt.legend(loc='best', ncol=2, mode="expand", shadow=True, fancybox=True)
-# leg.get_frame().set_alpha(0.5)
-#
-#
-# plt.show()
+
 
 # arr = [x for x in range(1, 1001)]
 # random.shuffle(arr)
