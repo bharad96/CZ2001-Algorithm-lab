@@ -4,8 +4,7 @@ from time import perf_counter
 import timeit
 from openpyxl import load_workbook
 
-wb=load_workbook("PythonOutput.xlsx")
-sheet = wb.active
+
 
 
 def merge(arr, n, mid, m):
@@ -184,6 +183,8 @@ def get_merge_insertion_sort_time(arr, switch_sort_num):
 
 
 def write_to_excel(row, col, data_size, S_values, comparison_arr, time_arr):
+    wb = load_workbook("PythonOutput.xlsx")
+    sheet = wb.active
 
     sheet.cell(row=row, column=col).value = "DataSize"
     sheet.cell(row=row, column=col + 1).value = data_size
@@ -200,13 +201,15 @@ def write_to_excel(row, col, data_size, S_values, comparison_arr, time_arr):
     for s_index in range(len(S_values)):
         sheet.cell(row=row + 3, column=col + s_index + 1).value = time_arr[s_index]
 
+    wb.save("PythonOutput.xlsx")
+
 
 def compare_diff_switch_sort_num(starting_num, ending_num, row, col):
     arr = [i for i in range(starting_num, ending_num + 1)]
     comparison_arr = []
     time_arr = []
     s_values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
-                28, 29, 30, 35, 40, 45, 50, 100]
+                28, 29, 30, 35, 40, 45, 50, 100, 200, 500, 1000]
     # print(arr)
     random.shuffle(arr)
 
@@ -225,14 +228,12 @@ def compare_diff_switch_sort_num(starting_num, ending_num, row, col):
 def main():
     row = 1
     col = 1
-    data_size_arr = [100, 1000, 5000]
+    data_size_arr = [100]
     for data_size in data_size_arr:
         compare_diff_switch_sort_num(1, data_size, row, col)
         row += 10
 
 main()
-
-wb.save("PythonOutput.xlsx")
 
 
 # arr = [x for x in range(1, 1001)]
