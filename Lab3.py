@@ -1,17 +1,21 @@
 import random
-import time
+import timeit
 from time import process_time
+# Install openpyxl to enable writing to excel
+from openpyxl import load_workbook
+
 
 def merge(arr, n, mid, m):
+    overall_num_comparisons = 0
+
     if m - n <= 0:
         return
 
     right_half_index = mid + 1
     left_half_index = n
-    num_of_comparisons = 0
 
     while left_half_index <= mid and right_half_index <= m:
-        num_of_comparisons += 1
+        overall_num_comparisons += 1
         if arr[left_half_index] < arr[right_half_index]:
             left_half_index += 1
 
@@ -27,7 +31,7 @@ def merge(arr, n, mid, m):
         else:
             # if last elements then break
             if left_half_index == mid and right_half_index == m:
-                break;
+                break
 
             #
             left_half_index += 1
@@ -39,18 +43,17 @@ def merge(arr, n, mid, m):
             left_half_index += 1
             right_half_index += 1
             mid += 1
-    return num_of_comparisons
+    return overall_num_comparisons
+
 
 def mergeSort(arr, n, m):
     mid = (n + m) // 2
-    if(m - n <= 0):
-        return 0
+    if m - n <= 0:
+        return
     else:
-        num = mergeSort(arr, n, mid)
-        num += mergeSort(arr, mid + 1, m)
-    num +=  merge(arr, n, mid, m)
-    return num
-
+        mergeSort(arr, n, mid)
+        mergeSort(arr, mid + 1, m)
+    merge(arr, n, mid, m)
 
 # # Simple test to check if merge sort is working
 # arr = [i for i in range(20)]
@@ -60,19 +63,12 @@ def mergeSort(arr, n, m):
 # mergeSort(arr, 0, len(arr) - 1)
 # print(arr)
 
-def get_merge_sort_time(arr):
-    arr_length = len(arr)
-    start = time.clock()
-    num_of_comparisons = mergeSort(arr, 0, arr_length - 1)
-    time_taken = time.clock() - start
-    print("Number of Comparisons: " , num_of_comparisons)
-    print("Elapsed time during the whole program in miliseconds:", time_taken*1000)
-
 
 def swap(index1, index2, arr):
     temp = arr[index1]
     arr[index1] = arr[index2]
     arr[index2] = temp
+
 
 def basic_insertionSort(arr):
     num_of_comparisons = 0
@@ -88,6 +84,7 @@ def basic_insertionSort(arr):
                 break
 
     return num_of_comparisons
+
 
 def get_insertion_sort_time(arr):
     arr_length = len(arr)
@@ -107,6 +104,7 @@ def get_insertion_sort_time(arr):
 # print(arr)
 # num_comparisons = basic_insertionSort(arr)
 # print(arr, num_comparisons)
+
 
 def insertionSort(arr, first, last):
     num_of_comparisons = 0
@@ -130,54 +128,109 @@ def insertionSort(arr, first, last):
 # print(arr)
 # num_comparisons = insertionSort(arr, 10, len(arr) - 1)
 # print(arr, num_comparisons)
-#
 
 def merge_insertion_sort(arr, first, last, switch_sort_num):
-
+    num_comparison = 0
+    # + 1 in both if and else because there is one comparison here in the if statement below
     if last - first > switch_sort_num:
         mid = (first + last) // 2
-        num = merge_insertion_sort(arr, first, mid, switch_sort_num)
-        num += merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
-        return num + merge(arr, first, mid, last)
+        num_comparison += merge_insertion_sort(arr, first, mid, switch_sort_num)
+        num_comparison += merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
+        num_comparison += merge(arr, first, mid, last)
+        return num_comparison
 
     else:
-        return insertionSort(arr, first, last)
+        num_comparison += insertionSort(arr, first, last)
+        return num_comparison
+
+
+# def merge_insertion_sort(arr, first, last, switch_sort_num):
+#
+#     # + 1 in both if and else because there is one comparison here in the if statement below
+#     if last - first > switch_sort_num:
+#         mid = (first + last) // 2
+#         num_comparison = merge_insertion_sort(arr, first, mid, switch_sort_num)
+#         num_comparison += merge_insertion_sort(arr, mid + 1, last, switch_sort_num)
+#         return num_comparison + merge(arr, first, mid, last) + 1
+#
+#     else:
+#         return 1 + insertionSort(arr, first, last)
+
 
 def get_merge_insertion_sort_time(arr, switch_sort_num):
     arr_length = len(arr)
-    start = time.clock()
-    #start = process_time()
-    num_of_comparisons = merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
+    # arr2 = arr.copy()
     # print(arr)
-    #stop = process_time()
-    time_taken = time.clock() - start
-    #time_taken = stop - start
+    #
+
+    # start = perf_counter()
+    # merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
+    # stop = perf_counter()
+    # #
+    # time_taken = stop - start
+    # print(arr)
+    num_comparisons = merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num)
+    repeat_loop_number = 5
+    time_taken = min(timeit.repeat(lambda: merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num), repeat=5, number=repeat_loop_number)) / repeat_loop_number # This repeats 5 * 5 = 25 times
+
+    # print(arr)
+
     print("Switch sort num :", + switch_sort_num)
-    print("Number of Comparisons: ", num_of_comparisons)
-    print("Elapsed time during the whole program in miliseconds:", time_taken*1000)
+    print("Elapsed time during the whole program in seconds:", time_taken)
+    print("Num of Comparisons :", num_comparisons)
+    return time_taken, num_comparisons
 
-    return time_taken
 
-def compare_diff_switch_sort_num():
-    arr_length = 10000
-    print("Array Size :", arr_length)
-    arr = [i for i in range(arr_length)]
+def write_to_excel(row, col, data_size, S_values, comparison_arr, time_arr):
+    wb = load_workbook("PythonOutput.xlsx")
+    sheet = wb.active
+
+    sheet.cell(row=row, column=col).value = "DataSize"
+    sheet.cell(row=row, column=col + 1).value = data_size
+
+    sheet.cell(row=row + 1, column=col).value = "S"
+    for s_index in range(len(S_values)):
+        sheet.cell(row=row + 1, column=col + s_index + 1).value = S_values[s_index]
+
+    sheet.cell(row=row + 2, column=col).value = "Comparisons"
+    for s_index in range(len(S_values)):
+        sheet.cell(row=row + 2, column=col + s_index + 1).value = comparison_arr[s_index]
+
+    sheet.cell(row=row + 3, column=col).value = "Time"
+    for s_index in range(len(S_values)):
+        sheet.cell(row=row + 3, column=col + s_index + 1).value = time_arr[s_index]
+
+    wb.save("PythonOutput.xlsx")
+
+
+def compare_diff_switch_sort_num(starting_num, ending_num, row, col):
+    arr = [i for i in range(starting_num, ending_num + 1)]
+    comparison_arr = []
+    time_arr = []
+    s_values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
+                28, 29, 30, 35, 40, 45, 50]
+    # print(arr)
+
     random.shuffle(arr)
 
-    #Mergesort Algorithm
-    temp_arr = arr.copy();
-    get_merge_sort_time(temp_arr);
-    print("+-----------------------------------------------------------+")
-
-    #MergeInsertionSort Algorithm
-    for i in range(21):
+    for S in s_values:
         temp_arr = arr.copy()
         # print("Before : ", temp_arr)
-        get_merge_insertion_sort_time(temp_arr, i)
+        time_taken, num_comparisons = get_merge_insertion_sort_time(temp_arr, S)
+        time_arr.append(time_taken)
+        comparison_arr.append(num_comparisons)
         # print("After : ", temp_arr)
 
-compare_diff_switch_sort_num()
+    write_to_excel(row, col, ending_num - starting_num + 1, s_values, comparison_arr, time_arr)
 
-# arr = [i for i in range(1000, 1000001)]
-# # print(arr)
-# random.shuffle(arr)
+
+# Compares S values and writes to excel for different data set size and S values
+def main():
+    row = 1
+    col = 1
+    data_size_arr = [500, 1000, 10000]
+    for data_size in data_size_arr:
+        compare_diff_switch_sort_num(1, data_size, row, col)
+        row += 10
+
+main()
