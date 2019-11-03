@@ -159,19 +159,19 @@ def merge_insertion_sort(arr, first, last, switch_sort_num):
 
 def get_merge_insertion_sort_time(arr, switch_sort_num):
     arr_length = len(arr)
-    # arr2 = arr.copy()
+    arr2 = arr.copy()
     # print(arr)
     #
 
-    # start = perf_counter()
-    # merge_insertion_sort(arr, 0, arr_length - 1, switch_sort_num)
-    # stop = perf_counter()
-    # #
-    # time_taken = stop - start
+    start = process_time()
+    merge_insertion_sort(arr2, 0, arr_length - 1, switch_sort_num)
+    stop = process_time()
+    #
+    time_taken = stop - start
     # print(arr)
     num_comparisons = merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num)
     repeat_loop_number = 5
-    time_taken = min(timeit.repeat(lambda: merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num), repeat=5, number=repeat_loop_number)) / repeat_loop_number # This repeats 5 * 5 = 25 times
+    # time_taken = min(timeit.repeat(lambda: merge_insertion_sort(arr.copy(), 0, arr_length - 1, switch_sort_num), repeat=5, number=repeat_loop_number)) / repeat_loop_number # This repeats 5 * 5 = 25 times
 
     # print(arr)
 
@@ -228,7 +228,7 @@ def compare_diff_switch_sort_num(starting_num, ending_num, row, col):
 def main():
     row = 1
     col = 1
-    data_size_arr = [500, 1000, 10000]
+    data_size_arr = [10000]
     for data_size in data_size_arr:
         compare_diff_switch_sort_num(1, data_size, row, col)
         row += 10
