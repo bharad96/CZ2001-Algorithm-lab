@@ -1,9 +1,9 @@
 public class Node {
-    int n;
+    int id;
     String name;
 
-    Node(int n, String name){
-        this.n = n;
+    Node(int id, String name){
+        this.id = id;
         this.name = name;
     }
 }

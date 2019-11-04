@@ -48,4 +48,8 @@ public class Graph {
     public boolean hasEdge(Node source, Node destination) {
         return adjacencyMap.containsKey(source) && adjacencyMap.get(source).contains(destination);
     }
+
+    public HashMap<Node, LinkedList<Node>> getAdjacencyList() {
+        return adjacencyMap;
+    }
 }
