@@ -96,6 +96,6 @@ public class GraphShow {
 		startTime = System.nanoTime();
 		bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 		endTime = System.nanoTime();
-		System.out.println("Time taken = " + (endTime-startTime/1000) + "us");
+		System.out.println("Time taken = " + ((endTime-startTime)/1000) + "ms");
     }
 }
