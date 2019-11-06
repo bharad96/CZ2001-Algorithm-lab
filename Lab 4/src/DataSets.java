@@ -182,41 +182,19 @@ public class DataSets {
         Node r = new Node(17, "Las Vegas");
         Node s = new Node(18, "Cacun");
         Node t = new Node(19, "Mexico");
-        Node u = new Node(0, "Sochi"); //AER
-        Node v = new Node(1, "Astrakhan"); //ASF
-        Node w = new Node(2, "Chelyabinsk"); //CEK
-        Node x = new Node(3, "Domodedovo"); //DME
-        Node y = new Node(4, "Belgorod"); //EGO
-        Node z = new Node(5, "Baku"); //GYD
-        Node z1 = new Node(6, "Khrabrovo"); //KGD
-        Node z2 = new Node(7, "Kazan"); //KZN
-        Node z3 = new Node(8, "St. Petersburg"); //LED
-        Node z4 = new Node(9, "Stavropol Krai"); //MRV
-        Node z5 = new Node(10, "Tatarstan"); //NBC
+        Node u = new Node(20, "Sochi"); //AER
+        Node v = new Node(21, "Astrakhan"); //ASF
+        Node w = new Node(22, "Chelyabinsk"); //CEK
+        Node x = new Node(23, "Domodedovo"); //DME
+        Node y = new Node(24, "Belgorod"); //EGO
+        Node z = new Node(25, "Baku"); //GYD
+        Node z1 = new Node(26, "Khrabrovo"); //KGD
+        Node z2 = new Node(27, "Kazan"); //KZN
+        Node z3 = new Node(28, "St. Petersburg"); //LED
+        Node z4 = new Node(29, "Stavropol Krai"); //MRV
 
 
-        /*Node l = new Node(11, "Nizhnevartovsk"); //NJC
-        Node m = new Node(12, "Yamalo-Nenets Autonomous Okrug"); //NUX
-        Node n = new Node(13, "Ob"); //OVB
-        Node o = new Node(14, "Yekaterinburg"); //SVX
-        Node p = new Node(15, "Taganorg"); //TGK
-        Node q = new Node(16, "Bugulma"); //UUA
-        Node r = new Node(17, "Irkutsk Oblast"); //BTK
-        Node s = new Node(18, "Chelyabinsk"); //CEK
-        Node t = new Node(19, "Chita"); //HTA
-        Node u = new Node(20, "Mirny"); //MJZ
-        Node v = new Node(20, "Lensk"); //ULK
-        Node w = new Node(20, "Yakutsk"); //YKS
-        Node x = new Node(20, "Ayacucho"); //AYP
-        Node y = new Node(20, "Cusco"); //CUZ
-        Node z = new Node(20, "Huanuco"); //HUU
-        Node z2 = new Node(20, "Iquitos"); //IQT
-        Node z3 = new Node(20, "Callao"); //LIM
-        Node z4 = new Node(20, "Pucallpa"); //PCL
-        Node z5 = new Node(20, "Tarapoto");//TPP*/
-
-
-        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,x,y,z,z2,z3,z4,z5);
+        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,x,y,z,z2,z3,z4);
 
         graph.addEdge(a,b);
         graph.addEdge(a,c);
@@ -273,7 +251,7 @@ public class DataSets {
         graph.addEdge(w, z2);
         graph.addEdge(w, c);
         graph.addEdge(w, k);
-graph.addEdge(x, z2);
+        graph.addEdge(x, z2);
         graph.addEdge(x, n);
         graph.addEdge(x, b);
         graph.addEdge(x, z5);
@@ -283,22 +261,17 @@ graph.addEdge(x, z2);
         graph.addEdge(y, z2);
         graph.addEdge(y, n);
         graph.addEdge(y, o);
-        graph.addEdge(z, z5);
         graph.addEdge(z, d);
         graph.addEdge(z1, g);
         graph.addEdge(z1, f);
         graph.addEdge(z2, l);
         graph.addEdge(z2, z3);
         graph.addEdge(z2, e);
-        graph.addEdge(z3, z5);
         graph.addEdge(z3, v);
         graph.addEdge(z3, b);
         graph.addEdge(z4, j);
         graph.addEdge(z4, r);
         graph.addEdge(z4, h);
-        graph.addEdge(z5, i);
-        graph.addEdge(z5, t);
-        graph.addEdge(z5, a);
 }
 
 	
@@ -343,10 +316,9 @@ graph.addEdge(x, z2);
         Node z12 = new Node(37, "Irkutsk Oblast"); //BTK
         Node z13 = new Node(38, "Chelyabinsk"); //CEK
         Node z14 = new Node(39, "Chita"); //HTA
-        Node z15 = new Node(40, "Mirny"); //MJZ
 
 
-        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,x,y,z,z2,z3,z4,z5);
+        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,x,y,z,z2,z3,z4,z5,z6,z7,z8,z9,z10,z11,z12,z13,z14);
 
         graph.addEdge(a,b);
         graph.addEdge(a,c);
@@ -443,7 +415,6 @@ graph.addEdge(x, z2);
         graph.addEdge(z11,z3);
         graph.addEdge(z11,z6);
         graph.addEdge(z12,m);
-        graph.addEdge(z15,z8);
         graph.addEdge(z8,z12);
         graph.addEdge(z8,z13);
         graph.addEdge(p,z13);
@@ -455,8 +426,5 @@ graph.addEdge(x, z2);
         graph.addEdge(z13,o);
         graph.addEdge(z5,j);
         graph.addEdge(z6,q);
-
-}	
-
-	
+}		
 }

@@ -75,14 +75,14 @@ public class GraphShow {
 		}
 		
 		//To create edge from 1 node to all nodes.
-		//for (Node i : nodes) {
-		//	for (Node j : nodes) {
-			//	 if(!graph.hasEdge(i, j) && i != j) {
-				//	 graph.addEdge(i, j);
-				 //}
-			//}
-			
-		//}
+//		for (Node i : nodes) {
+//			for (Node j : nodes) {
+//				 if(!graph.hasEdge(i, j) && i != j) {
+//					 graph.addEdge(i, j);
+//				 }
+//			}
+//			
+//		}
 		System.out.println("These are the Cities Available:");
 		for (Node node : nodes) {
 			System.out.println(node.id+1 + ". " + node.name);
