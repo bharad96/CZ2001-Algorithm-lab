@@ -160,7 +160,6 @@ public class DataSets {
         
 	}
 	
-	
 	public static void createSet30(Graph graph, ArrayList<Node> nodes) {
         Node a = new Node(0, "Beijing");
         Node b = new Node(1, "Hong Kong");
@@ -254,7 +253,6 @@ public class DataSets {
         graph.addEdge(x, z2);
         graph.addEdge(x, n);
         graph.addEdge(x, b);
-        graph.addEdge(x, z5);
         graph.addEdge(x, p);
         graph.addEdge(y, z1);
         graph.addEdge(y, m);
