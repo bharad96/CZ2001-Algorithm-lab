@@ -71,6 +71,8 @@ public class GraphShow {
 			break;
 		}
 		
+		//To create edge from 1 node to all nodes.
+
 		System.out.println("These are the Cities Available:");
 		for (Node node : nodes) {
 			System.out.println(node.id+1 + ". " + node.name);
