@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class GraphShow {
     public static void main(String[] args) {
 
+    	long startTime, endTime;
+    	
         Graph graph = new Graph(false);
         Node a = new Node(0, "Beijing");
         Node b = new Node(1, "Hong Kong");
@@ -52,7 +54,7 @@ public class GraphShow {
         ArrayList<Node> nodes = new ArrayList<Node>();//used for printing out choices for user
 
 		System.out.println("+========= Welcome to Flight BFS =========+");
-		System.out.print("Enter Flight Network Size(8/15/20): ");
+		System.out.print("Enter Flight Network Size(8/15/20/30/40): ");
 		choice = sc.nextInt();
 		
 		switch (choice) {
@@ -66,20 +68,21 @@ public class GraphShow {
 			DataSets.createSet20(graph,nodes);
 			break;
 		case 30:
-			//Currently not available. Need to add 10 more nodes first...
-			//DataSets.createSet30(graph);
+			DataSets.createSet30(graph,nodes);
 			break;
+		case 40:
+			DataSets.createSet40(graph, nodes);
 		}
 		
 		//To create edge from 1 node to all nodes.
-		for (Node i : nodes) {
-			for (Node j : nodes) {
-				 if(!graph.hasEdge(i, j) && i != j) {
-					 graph.addEdge(i, j);
-				 }
-			}
+		//for (Node i : nodes) {
+		//	for (Node j : nodes) {
+			//	 if(!graph.hasEdge(i, j) && i != j) {
+				//	 graph.addEdge(i, j);
+				 //}
+			//}
 			
-		}
+		//}
 		System.out.println("These are the Cities Available:");
 		for (Node node : nodes) {
 			System.out.println(node.id+1 + ". " + node.name);
@@ -90,6 +93,9 @@ public class GraphShow {
 		arrival = sc.nextInt();
 		
 		//To display the calculate and display shortest path
+		startTime = System.nanoTime();
 		bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+		endTime = System.nanoTime();
+		System.out.println("Time taken = " + (endTime-startTime/1000) + "us");
     }
 }
