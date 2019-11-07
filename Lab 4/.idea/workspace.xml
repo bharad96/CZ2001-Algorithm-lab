@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00baa35e-148b-4248-be8e-f7ef08877683" name="Default Changelist" comment="" />
+    <list default="true" id="3f4cacaa-c442-430f-9035-cba139a65654" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GraphShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphShow.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1THY5Qhb7Ih6DT3KsteFJS31fRW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -21,17 +33,31 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="GraphShow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GraphShow" />
+      <module name="Lab 4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GraphShow" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="00baa35e-148b-4248-be8e-f7ef08877683" name="Default Changelist" comment="" />
-      <created>1572925765026</created>
+      <changelist id="3f4cacaa-c442-430f-9035-cba139a65654" name="Default Changelist" comment="" />
+      <created>1573118303438</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1572925765026</updated>
-      <workItem from="1572925785895" duration="927000" />
+      <updated>1573118303438</updated>
+      <workItem from="1573118304667" duration="4018000" />
     </task>
     <servers />
   </component>
