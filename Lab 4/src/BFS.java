@@ -30,7 +30,7 @@ public class BFS {
         }
     }
     
-    void shortestRoute(Graph g, Node startingNode, Node destinationNode) {
+    int shortestRoute(Graph g, Node startingNode, Node destinationNode) {
     	 LinkedList<Node> queue = new LinkedList<Node>();
          HashSet<Node> visited = new HashSet<Node>();
          queue.add(startingNode);
@@ -38,14 +38,17 @@ public class BFS {
          HashMap<Node, LinkedList<Node>> adjacencyList = g.getAdjacencyList();
          
          int distance = -1;//Count Number of Stops
+         int runningTimes = 0; // Count number of times method executed
          boolean destinationFound = false; //Condition to break out of while loop
          HashMap<Node,Node> predecesor = new HashMap<Node,Node>();//Storing predecesors to get the path
+         
          
          while(!queue.isEmpty() && !destinationFound) {
              Node node = queue.remove();
              visited.add(node);
              //System.out.println("Visited: " + node.name);
              for (Node neighbor : adjacencyList.get(node)) {
+            	 runningTimes++;
                  if(!visited.contains(neighbor)){
                      visited.add(neighbor);
                      queue.add(neighbor);
@@ -77,5 +80,6 @@ public class BFS {
         	 System.out.println("Departure: " + startingNode.name);
         	 System.out.println("Arrival: " + destinationNode.name);
          }
-    }
+         return runningTimes;
+    }  
 }

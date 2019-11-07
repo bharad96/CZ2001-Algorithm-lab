@@ -49,10 +49,13 @@ public class GraphShow {
 		arrival = sc.nextInt();
 		
 		//To display the calculate and display shortest path - Original		
+		int runningTimes;
 		long totaltime = 0;
+		
+		runningTimes=0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -60,6 +63,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: Original");
         
 	    
@@ -75,9 +79,11 @@ public class GraphShow {
 				}
       		}
 		}
+      	
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -85,6 +91,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 10%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*20;
@@ -98,9 +105,10 @@ public class GraphShow {
 				}
       		}
 		}
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -108,6 +116,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 20%");
 	    
 	    
@@ -122,9 +131,10 @@ public class GraphShow {
 				}
       		}
 		}
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -132,6 +142,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 30%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*40;
@@ -145,9 +156,10 @@ public class GraphShow {
 				}
       		}
 		}
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -155,6 +167,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 40%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*50;
@@ -168,9 +181,10 @@ public class GraphShow {
 				}
       		}
 		}
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -178,6 +192,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 50%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*60;
@@ -191,9 +206,10 @@ public class GraphShow {
 				}
       		}
 		}
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -201,6 +217,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 60%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*70;
@@ -214,9 +231,10 @@ public class GraphShow {
 				}
       		}
 		}
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -224,6 +242,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 70%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*80;
@@ -237,9 +256,11 @@ public class GraphShow {
 				}
       		}
 		}
+      	
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -247,6 +268,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 80%");
 	    
 	    connectivity = graph.getAdjacencyList().size()/100*90;
@@ -260,9 +282,11 @@ public class GraphShow {
 				}
       		}
 		}
+      	
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -270,6 +294,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 90%");
 	    
 
@@ -280,9 +305,11 @@ public class GraphShow {
 					 }
 				}
 		}
+      	
+      	runningTimes = 0;
 	    for(int i = 0 ;i<5;i++){
 	        startTime = System.nanoTime();
-	        bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
+	        runningTimes += bfs.shortestRoute(graph, nodes.get(departure-1), nodes.get(arrival-1));
 	        endTime = System.nanoTime();
 	        if(i==0)
 	            totaltime=endTime-startTime;
@@ -290,6 +317,7 @@ public class GraphShow {
 	            totaltime=endTime-startTime + totaltime;
 	    }
 	    System.out.println("Time taken = " + ((totaltime/5)/1000) + "ms");
+	    System.out.println("Number of Runs = " + runningTimes/5);
 	    System.out.println("Connectivity: 100%");
     }
 }

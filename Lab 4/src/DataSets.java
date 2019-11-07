@@ -193,7 +193,7 @@ public class DataSets {
         Node z4 = new Node(29, "Stavropol Krai"); //MRV
 
 
-        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,x,y,z,z2,z3,z4);
+        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,z1,z2,z3,z4);
 
         graph.addEdge(a,b);
         graph.addEdge(a,c);
@@ -316,7 +316,7 @@ public class DataSets {
         Node z14 = new Node(39, "Chita"); //HTA
 
 
-        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,x,y,z,z2,z3,z4,z5,z6,z7,z8,z9,z10,z11,z12,z13,z14);
+        Collections.addAll(nodes, a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,z1,z2,z3,z4,z5,z6,z7,z8,z9,z10,z11,z12,z13,z14);
 
         graph.addEdge(a,b);
         graph.addEdge(a,c);
